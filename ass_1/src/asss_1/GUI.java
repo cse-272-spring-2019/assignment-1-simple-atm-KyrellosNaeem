@@ -189,13 +189,23 @@ public class GUI extends Application {
 		confirmW.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				int am =Integer.valueOf(amountField.getText());
-				a.Withdrawal(am);
-				amountField.setText(null);
+				boolean s = a.Withdrawal(am);
+				if(s) 
+					amountField.setText(null);
+				else {
+					balanceLabel.setVisible(true);
+					balanceLabel.setText("wrong amount");
+					}
 			}
 		});
 		next.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				balanceLabel.setText(a.next());
+				confirmD.setVisible(false);
+				confirmW.setVisible(false);
+			    enteramountLabel.setVisible(false);
+		    	amountField.setVisible(false);
+				balanceLabel.setVisible(true);
 				zero.setVisible(false);
 				one.setVisible(false);
 				two.setVisible(false);
@@ -211,6 +221,11 @@ public class GUI extends Application {
 		previous.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				balanceLabel.setText(a.back());
+				confirmD.setVisible(false);
+				confirmW.setVisible(false);
+			    enteramountLabel.setVisible(false);
+		    	amountField.setVisible(false);
+				balanceLabel.setVisible(true);
 				zero.setVisible(false);
 				one.setVisible(false);
 				two.setVisible(false);
